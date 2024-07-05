@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.34931.43
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xz.lib", "xz.lib.csproj", "{384D2918-DDD0-4E70-8429-B639601601DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xz.TestWindow", "xz.TestWindow\xz.TestWindow.csproj", "{36A5C0E8-18A5-4425-8002-FC92782E034E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{384D2918-DDD0-4E70-8429-B639601601DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{384D2918-DDD0-4E70-8429-B639601601DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{384D2918-DDD0-4E70-8429-B639601601DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{384D2918-DDD0-4E70-8429-B639601601DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36A5C0E8-18A5-4425-8002-FC92782E034E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36A5C0E8-18A5-4425-8002-FC92782E034E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36A5C0E8-18A5-4425-8002-FC92782E034E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36A5C0E8-18A5-4425-8002-FC92782E034E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {54EDBD12-8992-4DDB-8E32-C028D4FD89C4}
+	EndGlobalSection
+EndGlobal

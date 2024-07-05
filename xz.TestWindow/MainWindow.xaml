@@ -1,0 +1,36 @@
+﻿<Window x:Class="xz.TestWindow.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:xz.TestWindow"
+        xmlns:attach="clr-namespace:xz.lib.WPF.AttachDependency;assembly=xz.lib"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterOwner"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <StackPanel>
+            <Button x:Name="btn_test" Content="Test" 
+                    Width="100" Height="40" Margin="10"
+                    Click="Button_Click"
+                    attach:Guide.Index="1"
+                    attach:Guide.Description="这是按钮1"/>
+
+            <Button Content="按钮" 
+                    Width="100" Height="40" Margin="10"
+                    attach:Guide.Index="2"
+                    attach:Guide.Description="这是按钮2"/>
+            <Button Content="按钮" 
+                    Width="100" Height="40" Margin="10"
+                    attach:Guide.Index="3"
+                    attach:Guide.Description="这是按钮3"/>
+            <Button Content="按钮" 
+                    Width="100" Height="40" Margin="10"
+                    attach:Guide.Index="4"
+                    attach:Guide.Description="这是按钮4"/>
+            <ComboBox Width="100" Height="40" 
+                      attach:Guide.Index="5"
+                      attach:Guide.Description="这是下拉框"/>
+        </StackPanel>
+    </Grid>
+</Window>
