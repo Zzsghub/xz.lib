@@ -16,6 +16,15 @@ namespace xz.lib.WPF.Util
     {
         public static void GuideProcess<T>(Window mainWindow, string pageName = "", bool removeThis = false) where T : Window, IGuide, new()
         {
+            //根据windowstyle的不同设置偏移量
+            double offsetX = 0.0;
+            double offsetY = 0.0;
+            if (mainWindow.WindowStyle == WindowStyle.None)
+            {
+                offsetX = -7;
+                offsetY = -30;
+            }
+
             //根据所属的PageName过滤
             var list = Guide.GuideItems.Where(it => pageName.Equals(it.BelongPageName)).ToList();
             //根据index排序
@@ -29,7 +38,7 @@ namespace xz.lib.WPF.Util
                 var point = guideItem.Control.TransformToAncestor(window).Transform(new Point(0, 0));
 
                 navigate.SetWindowLocation(mainWindow.Left, mainWindow.Top, mainWindow.ActualWidth, mainWindow.ActualHeight);
-                navigate.SetNavigateBorderLocation(point.X, point.Y, guideItem.Control.ActualWidth, guideItem.Control.ActualHeight);
+                navigate.SetNavigateBorderLocation(point.X + offsetX, point.Y + offsetY, guideItem.Control.ActualWidth, guideItem.Control.ActualHeight);
                 navigate.Opacity = 0.4;
                 navigate.Show();
 

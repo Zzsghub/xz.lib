@@ -35,7 +35,6 @@ namespace xz.TestWindow
 
             MainWindow2 mainWindow2 = new MainWindow2();
             mainWindow2.Show();
-            //GuideUtil.GuideProcess<GuideWindow>(this);
         }
 
 
