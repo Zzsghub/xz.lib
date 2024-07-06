@@ -13,7 +13,7 @@ namespace xz.lib.WPF.AttachDependency
 {
     public class Guide : DependencyObject
     {
-        public static Dictionary<int, GuideItem> GuideItems { get; set; } = new Dictionary<int, GuideItem>();
+        public static List<GuideItem> GuideItems { get; set; } = new List<GuideItem>();
 
         public static int GetIndex(DependencyObject obj)
         {
@@ -35,38 +35,58 @@ namespace xz.lib.WPF.AttachDependency
             obj.SetValue(DescriptionProperty, value);
         }
 
+
+
+        public static string GetPageName(DependencyObject obj)
+        {
+            return (string)obj.GetValue(PageNameProperty);
+        }
+
+        public static void SetPageName(DependencyObject obj, string value)
+        {
+            obj.SetValue(PageNameProperty, value);
+        }
+
+        // Using a DependencyProperty as the backing store for PageName.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty PageNameProperty =
+            DependencyProperty.RegisterAttached("PageName", typeof(string), typeof(Guide), new PropertyMetadata("", AddGuide));
+
+
+
         // Using a DependencyProperty as the backing store for Description.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty DescriptionProperty =
             DependencyProperty.RegisterAttached("Description", typeof(string), typeof(Guide), new PropertyMetadata("", AddGuide));
 
         // Using a DependencyProperty as the backing store for Index.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty IndexProperty =
-            DependencyProperty.RegisterAttached("Index", typeof(int), typeof(Guide), new PropertyMetadata(0, AddGuide));
+            DependencyProperty.RegisterAttached("Index", typeof(int), typeof(Guide), new PropertyMetadata(-1, AddGuide));
 
         private static void AddGuide(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if ("Index".Equals(e.Property.ToString()))
+            var item = GuideItems.FirstOrDefault(it => d.GetHashCode().Equals(it.ControlHashCode));
+            if (item == null)
             {
-                var index = (int)e.NewValue;
-                if (!GuideItems.ContainsKey(index))
-                {
-                    GuideItems[index] = new GuideItem();
-                }
-                GuideItems[index].Index = index;
-                if (!string.IsNullOrEmpty(GetDescription(d)))
-                {
-                    GuideItems[index].Description = GetDescription(d);
-                }
-                GuideItems[index].Control = d as Control;
+                item = new GuideItem();
+                item.Control = d as Control;
+                item.ControlHashCode = d.GetHashCode();
+                item.BelongPageName = GetPageName(d);
+                GuideItems.Add(item);
             }
-            else if ("Description".Equals(e.Property.ToString()))
+            switch (e.Property.ToString())
             {
-                var des = e.NewValue.ToString();
-                if (GetIndex(d) > -1)
-                {
-                    GuideItems[GetIndex(d)].Description = GetDescription(d);
-                }
+                case "PageName":
+                    item.BelongPageName = (string)e.NewValue;
+                    break;
+                case "Description":
+                    item.Description = (string)e.NewValue;
+                    break;
+                case "Index":
+                    item.Index = (int)e.NewValue;
+                    break;
+                default:
+                    break;
             }
+
         }
     }
 }

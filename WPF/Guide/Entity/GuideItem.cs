@@ -15,5 +15,9 @@ namespace xz.lib.WPF.Entity
 
         public Control Control { get; set; }
 
+        public int ControlHashCode { get; set; }
+
+        public string BelongPageName { get; set; }
+
     }
 }

@@ -14,15 +14,16 @@ namespace xz.lib.WPF.Util
 {
     public static class GuideUtil
     {
-        public static void GuideProcess<T>(Window mainWindow) where T : Window, IGuide, new()
+        public static void GuideProcess<T>(Window mainWindow, string pageName = "", bool removeThis = false) where T : Window, IGuide, new()
         {
-            var list = Guide.GuideItems.Keys.ToList();
-            list.Sort();
-            GuideBackWindow navigate = new GuideBackWindow();
+            //根据所属的PageName过滤
+            var list = Guide.GuideItems.Where(it => pageName.Equals(it.BelongPageName)).ToList();
+            //根据index排序
+            list.Sort((a, b) => a.Index.CompareTo(b.Index));
 
-            foreach (var item in list)
+            GuideBackWindow navigate = new GuideBackWindow();
+            foreach (var guideItem in list)
             {
-                var guideItem = Guide.GuideItems[item];
                 Window window = Window.GetWindow(guideItem.Control);
                 //该控件相对于Window的坐标
                 var point = guideItem.Control.TransformToAncestor(window).Transform(new Point(0, 0));
@@ -34,7 +35,7 @@ namespace xz.lib.WPF.Util
 
                 T t = new T();
                 var guidePoint = CalculatePoint(guideItem, t);
-                t.SetGuideInfo(item, guideItem.Description, list.Count);
+                t.SetGuideInfo(guideItem.Index, guideItem.Description, list.Count);
                 t.Left = guidePoint.X;
                 t.Top = guidePoint.Y;
                 t.ShowDialog();
@@ -44,7 +45,16 @@ namespace xz.lib.WPF.Util
                     break;
                 }
             }
+
             navigate.Close();
+
+            if (removeThis)
+            {
+                foreach (var item in list)
+                {
+                    Guide.GuideItems.Remove(item);
+                }
+            }
         }
 
         private static Point CalculatePoint(lib.WPF.Entity.GuideItem guideItem, Window guide)
