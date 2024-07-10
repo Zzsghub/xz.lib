@@ -28,7 +28,7 @@ namespace xz.TestWindow
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            GuideUtil.GuideProcess<GuideWindow>(this, "MainWindow2", true);
+            GuideUtil.GuideProcess<GuideWindow>(this, "MainWindow2");
         }
     }
 }

@@ -14,7 +14,7 @@ namespace xz.lib.WPF.Util
 {
     public static class GuideUtil
     {
-        public static void GuideProcess<T>(Window mainWindow, string pageName = "", bool removeThis = false) where T : Window, IGuide, new()
+        public static void GuideProcess<T>(Window mainWindow, string pageName = "") where T : Window, IGuide, new()
         {
             //根据windowstyle的不同设置偏移量
             double offsetX = 0.0;
@@ -57,13 +57,13 @@ namespace xz.lib.WPF.Util
 
             navigate.Close();
 
-            if (removeThis)
-            {
-                foreach (var item in list)
-                {
-                    Guide.GuideItems.Remove(item);
-                }
-            }
+            //if (removeThis)
+            //{
+            //    foreach (var item in list)
+            //    {
+            //        Guide.GuideItems.Remove(item);
+            //    }
+            //}
         }
 
         private static Point CalculatePoint(lib.WPF.Entity.GuideItem guideItem, Window guide)
