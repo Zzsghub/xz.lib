@@ -43,6 +43,8 @@ namespace xz.lib.WPF.Util
                 navigate.Show();
 
                 T t = new T();
+                t.Topmost = true;
+                t.ShowInTaskbar = false;
                 var guidePoint = CalculatePoint(guideItem, t);
                 t.SetGuideInfo(guideItem.Index, guideItem.Description, list.Count);
                 t.Left = guidePoint.X;
@@ -56,14 +58,6 @@ namespace xz.lib.WPF.Util
             }
 
             navigate.Close();
-
-            //if (removeThis)
-            //{
-            //    foreach (var item in list)
-            //    {
-            //        Guide.GuideItems.Remove(item);
-            //    }
-            //}
         }
 
         private static Point CalculatePoint(lib.WPF.Entity.GuideItem guideItem, Window guide)

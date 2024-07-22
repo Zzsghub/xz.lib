@@ -90,7 +90,7 @@ namespace xz.lib.WPF.AttachDependency
             //如果相同的条件下获取到两条记录
             if (item.Index != -1)
             {
-                var list = GuideItems.Where(it => it.Index.Equals(GetIndex(d)) && it.BelongPageName.Equals(GetPageName(d))).ToList();
+                var list = GuideItems.Where(it => GetIndex(d).Equals(it.Index) && GetPageName(d).Equals(it.BelongPageName)).ToList();
                 if (list.Count > 2)
                 {
                     var last = list.FirstOrDefault(it => !d.GetHashCode().Equals(it.ControlHashCode));

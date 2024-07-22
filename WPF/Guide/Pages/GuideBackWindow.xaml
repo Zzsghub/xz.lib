@@ -1,18 +1,20 @@
 ﻿<Window x:Class="xz.lib.WPF.Pages.GuideBackWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        mc:Ignorable="d"
-        WindowStyle="None"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         AllowsTransparency="True"
-        Background="Black">
+        Background="Black"
+        ShowInTaskbar="False"
+        WindowStyle="None"
+        mc:Ignorable="d">
     <Canvas x:Name="canvas">
-        <Border Background="White" CornerRadius="5"
+        <Border Canvas.Left="{Binding BorderX}"
+                Canvas.Top="{Binding BorderY}"
                 Width="{Binding BorderWidth}"
                 Height="{Binding BorderHeight}"
-                Opacity="0.8"
-                Canvas.Top="{Binding BorderY}"
-                Canvas.Left="{Binding BorderX}" />
+                Background="White"
+                CornerRadius="5"
+                Opacity="0.8" />
     </Canvas>
 </Window>
